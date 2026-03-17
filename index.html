@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru" class="theme-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>toDoList</title>
+  <link rel="stylesheet" href="./fonts/fonts.css">
+  <link rel="stylesheet" href="./style/root.css">
+  <link rel="stylesheet" href="./style/global.css">
+  <link rel="stylesheet" href="./style/adaptive.css">
+  <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+  <main class="content">
+    <header class="header">
+      <button class="setting__button button"
+      type="button"
+      onclick="window['dialog__setting'].showModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="39" viewBox="0 0 36 39" fill="none" class="icon__setting">
+          <path d="M22.6016 33.5213C22.5969 32.5786 22.9695 31.6732 23.6361 31.0066C24.3027 30.34 25.2081 29.9675 26.1507 29.9721C26.7474 29.9881 27.3309 30.1514 27.8489 30.4476C29.5424 31.4233 31.706 30.8463 32.6887 29.1569L33.9115 27.1191C34.3848 26.3068 34.5147 25.3393 34.2724 24.4308C34.0303 23.5224 33.4358 22.7481 32.6208 22.2792C31.806 21.8104 31.2115 21.036 30.9692 20.1277C30.7271 19.2193 30.857 18.2518 31.3303 17.4394C31.6381 16.9021 32.0835 16.4566 32.6208 16.1488" stroke="currentColor" stroke-width="2.78292" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7.94586 7.96346C8.46018 8.26873 9.04599 8.43276 9.64405 8.43897C11.5845 8.43918 13.1654 6.88095 13.1933 4.94068C13.1888 4.00094 13.5589 3.09813 14.2218 2.43203C14.8847 1.76593 15.7858 1.39144 16.7255 1.39146H19.052C20.0112 1.39107 20.9298 1.77895 21.5984 2.46676C22.267 3.15458 22.6288 4.08374 22.6012 5.04257C22.6075 5.64064 22.7715 6.22644 23.0767 6.74078C23.5513 7.54994 24.3281 8.13715 25.236 8.37289C26.144 8.60864 27.1084 8.47355 27.9166 7.99743C29.6145 7.02453 31.7796 7.60948 32.7564 9.30505L33.9113 11.3089V11.3259" stroke="currentColor" stroke-width="2.78292" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3.10591 9.2711L1.86623 11.3089C0.890486 13.0024 1.46746 15.166 3.15686 16.1488C4.25501 16.7828 4.9315 17.9546 4.9315 19.2225C4.9315 20.4906 4.25501 21.6622 3.15686 22.2963C1.46959 23.2724 0.891989 25.4308 1.86623 27.1191L3.03799 29.14C3.49572 29.9658 4.26373 30.5755 5.17206 30.8335C6.08038 31.0916 7.05414 30.9773 7.87785 30.5156C8.6876 30.043 9.65253 29.9135 10.5582 30.156C11.4639 30.3983 12.2352 30.9924 12.7007 31.8061C13.006 32.3206 13.17 32.9063 13.1762 33.5044C13.1762 35.4645 14.7652 37.0535 16.7255 37.0535H19.052" stroke="currentColor" stroke-width="2.78292" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M17.8969 24.1133C20.5981 24.1133 22.7877 21.9236 22.7877 19.2225C22.7877 16.5213 20.5981 14.3317 17.8969 14.3317C15.1958 14.3317 13.0061 16.5213 13.0061 19.2225C13.0061 21.9236 15.1958 24.1133 17.8969 24.1133Z" stroke="currentColor" stroke-width="2.78292" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </header>
+    <section class="calendar">
+      <div class="calendar__week">
+        <div class="calendar__weekdays">
+          <span class="calendar__weekday">ПН</span>
+          <span class="calendar__weekday">ВТ</span>
+          <span class="calendar__weekday">СР</span>
+          <span class="calendar__weekday">ЧТ</span>
+          <span class="calendar__weekday">ПТ</span>
+          <span class="calendar__weekday">СБ</span>
+          <span class="calendar__weekday">ВС</span>
+        </div>
+        
+        <div class="calendar__days">
+          <button class="calendar__day" data-date="2026-03-01"><span class="day__num">1</span></button>
+          <button class="calendar__day calendar__day-today" data-date="2026-03-02"><span class="day__num">2</span></button>
+          <button class="calendar__day" data-date="2026-03-03"><span class="day__num">3</span></button>
+          <button class="calendar__day" data-date="2026-03-04"><span class="day__num">4</span></button>
+          <button class="calendar__day" data-date="2026-03-05"><span class="day__num">5</span></button>
+          <button class="calendar__day" data-date="2026-03-06"><span class="day__num">6</span></button>
+          <button class="calendar__day" data-date="2026-03-07"><span class="day__num">7</span></button>
+        </div>
+      </div>
+
+      <!-- Полный вид — весь месяц (скрыт по умолчанию) -->
+      <div class="calendar__full">
+        <div class="calendar__header">
+          <button class="calendar__nav calendar__nav--prev">
+            <!-- svg стрелка -->
+          </button>
+          <span class="calendar__month">МАРТ</span>
+          <button class="calendar__nav calendar__nav--next">
+            <!-- svg стрелка -->
+          </button>
+        </div>
+        <div class="calendar__weekdays">
+          <span class="calendar__weekday">ПН</span>
+          <span class="calendar__weekday">ВТ</span>
+          <span class="calendar__weekday">СР</span>
+          <span class="calendar__weekday">ЧТ</span>
+          <span class="calendar__weekday">ПТ</span>
+          <span class="calendar__weekday">СБ</span>
+          <span class="calendar__weekday">ВС</span>
+        </div>
+        <div class="calendar__days">
+          <!-- JS сгенерирует все дни месяца -->
+        </div>
+      </div>
+    </section>
+    <section class="task-control">
+      <h1 class="my-tasks">Мои задачи:</h1>
+      <ul class="toggle-selection">
+        <li class="toggle-select filter__select active-select">
+          <button class="toggle__button button" id="buttonAllTasks">все</button>
+        </li>
+        <li class="toggle-select filter__select">
+          <button class="toggle__button button" id="buttonActiveTasks">активные</button>
+        </li>
+        <li class="toggle-select filter__select">
+          <button class="toggle__button button" id="buttonFinishTasks">закрытые</button>
+        </li>
+      </ul>
+    </section>
+    <section class="task-platform">
+    
+    </section>
+  </main>
+    
+  <footer class="add-task">
+    <button class="add__bg button"
+    type="button"
+    onclick="window['dialog__new-task'].showModal()"
+    id="buttonAddTask">
+      <svg width="16" height="16" viewBox="0 0 29 29" class="icon plus-icon">
+        <path fill="currentColor" d="M14.2998 0C15.0177 3.13804e-08 15.5995 0.581932 15.5996 1.2998V13H27.2998C28.0177 13 28.5995 13.5819 28.5996 14.2998C28.5996 15.0178 28.0178 15.5996 27.2998 15.5996H15.5996V27.2998C15.5996 28.0178 15.0178 28.5996 14.2998 28.5996C13.5819 28.5995 13 28.0177 13 27.2998V15.5996H1.2998C0.581925 15.5995 0 15.0177 0 14.2998C0.000114782 13.582 0.581996 13.0001 1.2998 13H13V1.2998C13.0001 0.581999 13.582 0.000108051 14.2998 0Z"></path>
+      </svg>
+    </button>
+  </footer>
+
+<!-- диалоговые окна -->
+
+<!-- окно настроек -->
+  <dialog class="dialog" id="dialog__setting">
+    <div class="dialog__window">
+      <div class="dialog__header">
+        <h3 class="dialog__title">Настройки</h3>
+        <button class="close__button button"
+        onclick="window['dialog__setting'].close()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="31" height="19" viewBox="0 0 31 19" fill="none" class="close__icon">
+            <path d="M22.728 1.50071L15.0919 9.13675L22.728 16.7728" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.63681 16.7735L15.2736 9.13675L7.63681 1.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="dialog__container">
+        <div class="set__container">
+          <h4 class="theme__title">Тема</h4>
+          <ul class="toggle-selection">
+            <li class="toggle-select theme__select">
+              <button class="toggle__button button" id="buttonThemeAuto">авто</button>
+            </li>
+            <li class="toggle-select theme__select">
+              <button class="toggle__button button" id="buttonThemeLight">светлая</button>
+            </li>
+            <li class="toggle-select active-select theme__select">
+              <button class="toggle__button button" id="buttonThemeDark">тёмная</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+<!-- окно новой задачи -->
+  <dialog class="dialog" id="dialog__new-task">
+    <div class="dialog__window">
+      <div class="dialog__header">
+        <h3 class="dialog__title">Новая задача</h3>
+        <button
+        onclick="window['dialog__new-task'].close()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="31" height="19" viewBox="0 0 31 19" fill="none" class="close__icon">
+            <path d="M22.728 1.50071L15.0919 9.13675L22.728 16.7728" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.63681 16.7735L15.2736 9.13675L7.63681 1.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      </div>
+      <div class="dialog__container">
+        <div class="name-task create__input">
+          <label for="task__name" class="input__title">Название</label>
+          <input type="text" id="task__name" value="" class="input">
+        </div>
+        <div class="comment-task create__input">
+          <label for="task__comment" class="input__title">Комментарий</label>
+          <input type="text" id="task__comment" value="" class="input">
+        </div>
+        <div class="date-task">
+          <div class="day create__input">
+            <label for="task__day" class="input__title">День</label>
+            <input type="date" id="task__day" value="" class="input">
+          </div>
+          <div class="time__input create__input">
+            <label for="task__time" class="input__title">Время</label>
+            <input type="time" id="task__time" value="" class="input">
+          </div>
+        </div>
+      </div>
+      <div class="dialog-close__button">
+        <button class="create__button button" type="submit" 
+        onclick="window['dialog__new-task'].close()"
+        id="createButton">
+          <span class="send">Создать</span>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+<!--окно редактирования задачи-->
+  <dialog class="dialog" id="dialog__current-task">
+    <div class="dialog__window">
+      <div class="dialog__header">
+        <h3 class="dialog__title">редактировать</h3>
+        <button
+        onclick="window['dialog__current-task'].close()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="31" height="19" viewBox="0 0 31 19" fill="none" class="close__icon">
+            <path d="M22.728 1.50071L15.0919 9.13675L22.728 16.7728" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.63681 16.7735L15.2736 9.13675L7.63681 1.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      </div>
+      <div class="dialog__container">
+        <div class="name-task create__input">
+          <label for="task__name" class="input__title">Название</label>
+          <input type="text" id="edit__name" value="" class="input">
+        </div>
+        <div class="comment-task create__input">
+          <label for="task__comment" class="input__title">Комментарий</label>
+          <input type="text" id="edit__comment" value="" class="input">
+        </div>
+        <div class="date-task">
+          <div class="day create__input">
+            <label for="task__day" class="input__title">День</label>
+            <input type="date" id="edit__day" value="" class="input">
+          </div>
+          <div class="time__input create__input">
+            <label for="task__time" class="input__title">Время</label>
+            <input type="time" id="edit__time" value="" class="input">
+          </div>
+        </div>
+      </div>
+      <div class="dialog-save__buttons">
+        <button class="create__button button" type="submit"
+        id="saveButton">
+          <span class="send">сохранить</span>
+        </button>
+        <button class="delete__button button" type="submit"
+        id="deleteButton">
+          <span class="send">удалить</span>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+
+<!-- шаблоны для задач -->
+  <template id="taskTemplate">
+    <div class="full__container task__ready">
+      <div class="time__checkbox-container">
+        <div class="time">
+          <span class="time__text"></span>
+        </div>
+        <button class="fixedButton" id="button__fix">
+          изменить
+        </button>
+      </div>
+      <div class="task__container">
+        <div class="task" id="">
+          <h2 class="task-name"></h2>
+          <p class="comments"></p>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" class="checkbox__task-done">
+          <div class="checkbox__custom"></div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="checkboxTemplate">
+    <div>
+      <input type="checkbox" class="checkbox__task-done">
+      <div class="checkbox__custom"></div>
+    </div>
+  </template>
+
+  <script src="/logic.js"></script>
+</body>
+</html>

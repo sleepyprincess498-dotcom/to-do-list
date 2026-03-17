@@ -1,0 +1,13 @@
+:root.theme-dark {
+  --bg-color: #262925;
+  --accent-color: #4B3A48;
+  --light-color: #F7B4D6;
+  --text-color: #FFF9F1;
+}
+
+:root.theme-light {
+  --bg-color: #FFF9F1;
+  --accent-color: #F7B4D6;
+  --light-color: #4B3A48;
+  --text-color: #262925;
+}
