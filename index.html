@@ -13,6 +13,9 @@
 <body>
   <main class="content">
     <header class="header">
+      <button class="button input-button calendar__full-button" id="buttonFullCalendar">
+        <span>полный календарь</span>
+      </button>
       <button class="setting__button button"
       type="button"
       onclick="window['dialog__setting'].showModal()">
@@ -24,8 +27,10 @@
         </svg>
       </button>
     </header>
-    <section class="calendar">
-      <div class="calendar__week">
+
+    <section class="calendar" id="calendarContainer">
+
+      <div class="calendar__week" id="calendarWeek">
         <div class="calendar__weekdays">
           <span class="calendar__weekday">ПН</span>
           <span class="calendar__weekday">ВТ</span>
@@ -36,42 +41,33 @@
           <span class="calendar__weekday">ВС</span>
         </div>
         
-        <div class="calendar__days">
-          <button class="calendar__day" data-date="2026-03-01"><span class="day__num">1</span></button>
-          <button class="calendar__day calendar__day-today" data-date="2026-03-02"><span class="day__num">2</span></button>
-          <button class="calendar__day" data-date="2026-03-03"><span class="day__num">3</span></button>
-          <button class="calendar__day" data-date="2026-03-04"><span class="day__num">4</span></button>
-          <button class="calendar__day" data-date="2026-03-05"><span class="day__num">5</span></button>
-          <button class="calendar__day" data-date="2026-03-06"><span class="day__num">6</span></button>
-          <button class="calendar__day" data-date="2026-03-07"><span class="day__num">7</span></button>
-        </div>
-      </div>
-
-      <!-- Полный вид — весь месяц (скрыт по умолчанию) -->
-      <div class="calendar__full">
-        <div class="calendar__header">
-          <button class="calendar__nav calendar__nav--prev">
-            <!-- svg стрелка -->
-          </button>
-          <span class="calendar__month">МАРТ</span>
-          <button class="calendar__nav calendar__nav--next">
-            <!-- svg стрелка -->
-          </button>
-        </div>
-        <div class="calendar__weekdays">
-          <span class="calendar__weekday">ПН</span>
-          <span class="calendar__weekday">ВТ</span>
-          <span class="calendar__weekday">СР</span>
-          <span class="calendar__weekday">ЧТ</span>
-          <span class="calendar__weekday">ПТ</span>
-          <span class="calendar__weekday">СБ</span>
-          <span class="calendar__weekday">ВС</span>
-        </div>
-        <div class="calendar__days">
-          <!-- JS сгенерирует все дни месяца -->
+        <div class="calendar__days" id="weekDays">
+          <!-- JS сгенерирует -->
+           <button class="calendar__day" data-date="">
+            <span class="day__num">1</span>
+           </button>
+           <button class="calendar__day calendar__day-today" data-date="">
+            <span class="day__num">2</span>
+           </button>
+           <button class="calendar__day" data-date="">
+            <span class="day__num">3</span>
+           </button>
+           <button class="calendar__day" data-date="">
+            <span class="day__num">4</span>
+           </button>
+           <button class="calendar__day" data-date="">
+            <span class="day__num">5</span>
+           </button>
+           <button class="calendar__day" data-date="">
+            <span class="day__num">6</span>
+           </button>
+           <button class="calendar__day" data-date="">
+            <span class="day__num">7</span>
+           </button>
         </div>
       </div>
     </section>
+
     <section class="task-control">
       <h1 class="my-tasks">Мои задачи:</h1>
       <ul class="toggle-selection">
@@ -170,7 +166,7 @@
         </div>
       </div>
       <div class="dialog-close__button">
-        <button class="create__button button" type="submit" 
+        <button class="create__button button input-button" type="submit" 
         onclick="window['dialog__new-task'].close()"
         id="createButton">
           <span class="send">Создать</span>
@@ -213,11 +209,11 @@
         </div>
       </div>
       <div class="dialog-save__buttons">
-        <button class="create__button button" type="submit"
+        <button class="create__button button input-button" type="submit"
         id="saveButton">
           <span class="send">сохранить</span>
         </button>
-        <button class="delete__button button" type="submit"
+        <button class="delete__button button input-button" type="submit"
         id="deleteButton">
           <span class="send">удалить</span>
         </button>
@@ -226,7 +222,7 @@
   </dialog>
 
 
-<!-- шаблоны для задач -->
+<!-- шаблон для задачи в списке -->
   <template id="taskTemplate">
     <div class="full__container task__ready">
       <div class="time__checkbox-container">
@@ -257,6 +253,36 @@
     </div>
   </template>
 
-  <script src="logic.js"></script>
+  <!-- шаблон для полного календаря -->
+  <template id="fullCalendarTemplate">
+    <div class="calendar__full" id="calendarFull">
+      <div class="calendar__month">
+        <div class="calendar__header">
+          <span class="calendar__month-title" id="monthTitle">МАРТ</span>
+        </div>
+        <div class="calendar__month-container">
+          <div class="calendar__weekdays">
+            <span class="calendar__weekday">ПН</span>
+            <span class="calendar__weekday">ВТ</span>
+            <span class="calendar__weekday">СР</span>
+            <span class="calendar__weekday">ЧТ</span>
+            <span class="calendar__weekday">ПТ</span>
+            <span class="calendar__weekday">СБ</span>
+            <span class="calendar__weekday">ВС</span>
+          </div>
+          <div class="calendar__days calendar__days-full" id="monthDays">
+              <!-- JS сгенерирует -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template id="calendarDayTemplate">
+    <button class="calendar__day" data-date="">
+      <span class="day__num">1</span>
+    </button>
+  </template>
+
+  <script type="module" src="/dist/main.js"></script>
 </body>
 </html>
