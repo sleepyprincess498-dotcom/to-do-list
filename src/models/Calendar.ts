@@ -2,6 +2,7 @@ import type { IMonth, TWeek } from "../types/index.js";
 
 export class Calendar {
   private selectedDate: Date = new Date();
+  private monthsCache: IMonth[] | null = null;
 
   getCurrentDate(): Date {
     return this.selectedDate;
@@ -23,6 +24,9 @@ export class Calendar {
   }
 
   getMonthsRange(): IMonth[] {
+
+    if(this.monthsCache) return this.monthsCache
+
     const now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth();
@@ -40,7 +44,9 @@ export class Calendar {
       }
     }
 
-    return oneYear;
+    this.monthsCache = oneYear
+
+    return this.monthsCache;
   }
 
   getWeek(date: Date): TWeek {

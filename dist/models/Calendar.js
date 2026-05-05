@@ -1,5 +1,6 @@
 export class Calendar {
     selectedDate = new Date();
+    monthsCache = null;
     getCurrentDate() {
         return this.selectedDate;
     }
@@ -15,6 +16,8 @@ export class Calendar {
         return { year, month, name, daysCount, firstDayWeekday };
     }
     getMonthsRange() {
+        if (this.monthsCache)
+            return this.monthsCache;
         const now = new Date();
         let year = now.getFullYear();
         let month = now.getMonth();
@@ -28,7 +31,8 @@ export class Calendar {
                 year += 1;
             }
         }
-        return oneYear;
+        this.monthsCache = oneYear;
+        return this.monthsCache;
     }
     getWeek(date) {
         const week = [];

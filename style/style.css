@@ -11,13 +11,19 @@
 }
 
 body.calendar-open .calendar__week,
-body.calendar-open .task-platform {
-  transform: translateX(-100%);
-  opacity: 0;
+body.calendar-open .task-platform,
+body.calendar-open .task-control {
+  transform: translateY(-1000%);
+  opacity: 1;
 }
 
-body.calendar-open .task-control {
-  transform: translateX(200%);
+body.calendar-open .calendar__week {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.calendar-open .calendar {
+  margin-block: 0;
 }
 
 body.calendar-open .calendar__full {
@@ -25,8 +31,17 @@ body.calendar-open .calendar__full {
   position: relative;
   opacity: 1;
   z-index: 0;
+  transform: translateY(0%)
 }
 
+body.calendar-open .calendar__full-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
 .content {
   background-color: var(--bg-color);
@@ -130,9 +145,9 @@ body.calendar-open .calendar__full {
 
 .calendar__full {
   position: absolute;
-
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: transform 0.5s ease;
+  transform: translateY(300%);
   z-index: 0;
   inline-size: 100%;
   pointer-events: none;

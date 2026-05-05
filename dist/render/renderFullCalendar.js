@@ -1,9 +1,10 @@
 import { Calendar } from "../models/Calendar.js";
 const calendarMonthTemplate = document.getElementById('fullCalendarTemplate');
 const calendarDayTemplate = document.getElementById('calendarDayTemplate');
-let calendar = new Calendar();
-export function renderFullCalendar(monthsRange) {
-    const container = document.getElementById('calendarContainer');
+export function renderFullCalendar(monthsRange, calendar) {
+    const container = document.getElementById('calendarFullContainer');
+    if (!container)
+        return;
     monthsRange.forEach(month => {
         const monthClone = calendarMonthTemplate?.content.cloneNode(true);
         if (!monthClone)
@@ -23,10 +24,10 @@ export function renderFullCalendar(monthsRange) {
             dayNum.textContent = String(day);
             if (day === null)
                 dayNum.textContent = '';
-            dayContainer.dataset.date = `${month.year}-${month.month}-${day}`;
+            dayContainer.dataset.date = `${month.year}-${month.month + 1}-${day}`;
             calendarDays?.append(calendarDay);
         });
-        container?.append(monthClone);
+        container.append(monthClone);
     });
 }
 //# sourceMappingURL=renderFullCalendar.js.map

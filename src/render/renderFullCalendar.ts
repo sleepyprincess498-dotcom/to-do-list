@@ -4,10 +4,10 @@ import type { IMonth } from "../types/index.js";
 const calendarMonthTemplate = document.getElementById('fullCalendarTemplate') as HTMLTemplateElement | null;
 const calendarDayTemplate = document.getElementById('calendarDayTemplate') as HTMLTemplateElement | null;
 
-let calendar = new Calendar();
-
-export function renderFullCalendar(monthsRange: IMonth[]): void {
-  const container = document.getElementById('calendarContainer');
+export function renderFullCalendar(monthsRange: IMonth[], calendar: Calendar): void {
+  const container = document.getElementById('calendarFullContainer');
+  if (!container) return
+  
 
   monthsRange.forEach(month => {
     const monthClone = calendarMonthTemplate?.content.cloneNode(true) as DocumentFragment;
@@ -27,10 +27,10 @@ export function renderFullCalendar(monthsRange: IMonth[]): void {
       if( !dayNum || !dayContainer) return
       dayNum.textContent = String(day);
       if(day === null) dayNum.textContent = '';
-      dayContainer.dataset.date = `${month.year}-${month.month}-${day}`;
+      dayContainer.dataset.date = `${month.year}-${month.month + 1}-${day}`;
 
       calendarDays?.append(calendarDay);
     })
-    container?.append(monthClone)
+    container.append(monthClone)
   })
 }

@@ -1,6 +1,7 @@
 import type { IMonth, TWeek } from "../types/index.js";
 export declare class Calendar {
     private selectedDate;
+    private monthsCache;
     getCurrentDate(): Date;
     setCurrentDate(date: Date): void;
     getMonthData(year: number, month: number): IMonth;
