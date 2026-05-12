@@ -1,12 +1,12 @@
 import { Calendar } from "../models/Calendar.js";
 const calendarMonthTemplate = document.getElementById('fullCalendarTemplate');
 const calendarDayTemplate = document.getElementById('calendarDayTemplate');
-export function renderFullCalendar(monthsRange, calendar) {
+export function renderFullCalendar(monthsRange, calendar, dayTemplate, monthTemplate) {
     const container = document.getElementById('calendarFullContainer');
     if (!container)
         return;
     monthsRange.forEach(month => {
-        const monthClone = calendarMonthTemplate?.content.cloneNode(true);
+        const monthClone = monthTemplate?.content.cloneNode(true);
         if (!monthClone)
             return;
         let monthTitle = monthClone.querySelector('.calendar__month-title');
@@ -16,7 +16,7 @@ export function renderFullCalendar(monthsRange, calendar) {
         const calendarDays = monthClone.querySelector('.calendar__days-full');
         const monthDays = calendar.getMonthGrid(month.year, month.month);
         monthDays.forEach(day => {
-            let calendarDay = calendarDayTemplate?.content.cloneNode(true);
+            let calendarDay = dayTemplate?.content.cloneNode(true);
             let dayNum = calendarDay.querySelector('.day__num');
             let dayContainer = calendarDay.querySelector('.calendar__day');
             if (!dayNum || !dayContainer)

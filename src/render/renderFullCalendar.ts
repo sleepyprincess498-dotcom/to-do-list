@@ -1,16 +1,16 @@
 import { Calendar } from "../models/Calendar.js";
 import type { IMonth } from "../types/index.js";
 
-const calendarMonthTemplate = document.getElementById('fullCalendarTemplate') as HTMLTemplateElement | null;
-const calendarDayTemplate = document.getElementById('calendarDayTemplate') as HTMLTemplateElement | null;
+const calendarMonthTemplate = document.getElementById('fullCalendarTemplate') as HTMLTemplateElement;
+const calendarDayTemplate = document.getElementById('calendarDayTemplate') as HTMLTemplateElement;
 
-export function renderFullCalendar(monthsRange: IMonth[], calendar: Calendar): void {
+export function renderFullCalendar(monthsRange: IMonth[], calendar: Calendar, dayTemplate: HTMLTemplateElement, monthTemplate: HTMLTemplateElement): void {
   const container = document.getElementById('calendarFullContainer');
   if (!container) return
   
 
   monthsRange.forEach(month => {
-    const monthClone = calendarMonthTemplate?.content.cloneNode(true) as DocumentFragment;
+    const monthClone = monthTemplate?.content.cloneNode(true) as DocumentFragment;
 
     if(!monthClone) return
     let monthTitle = monthClone.querySelector('.calendar__month-title');
@@ -21,7 +21,7 @@ export function renderFullCalendar(monthsRange: IMonth[], calendar: Calendar): v
     const monthDays = calendar.getMonthGrid(month.year, month.month);
 
     monthDays.forEach(day => {
-      let calendarDay = calendarDayTemplate?.content.cloneNode(true) as DocumentFragment;
+      let calendarDay = dayTemplate?.content.cloneNode(true) as DocumentFragment;
       let dayNum = calendarDay.querySelector('.day__num');
       let dayContainer = calendarDay.querySelector('.calendar__day') as HTMLElement;
       if( !dayNum || !dayContainer) return

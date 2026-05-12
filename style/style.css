@@ -429,7 +429,6 @@ body.calendar-open .calendar__full-container {
 }
 
 .dialog__window {
-  block-size: 100%;
   inline-size: 100%;
   padding: 30px 15px;
   background-color: var(--accent-color);
@@ -438,6 +437,7 @@ body.calendar-open .calendar__full-container {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  box-sizing: border-box;
 }
 
 .dialog__header {
