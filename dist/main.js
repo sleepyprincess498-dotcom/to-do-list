@@ -54,6 +54,7 @@ createButton?.addEventListener("click", (ev) => {
         return;
     const task = new Task(Date.now(), name, comm, day, time);
     taskManager.addTask(task);
+    taskManager.saveAllTasks();
     renderTask(task.getTaskData(), taskTemplate, taskContainer);
     newTaskNameInput.value = '';
     newTaskCommentInput.value = '';
